@@ -16,7 +16,6 @@ import com.micro7.micro7g3.repository.HistorialPedidoRepository;
 import com.micro7.micro7g3.repository.PedidoDetalleRepository;
 import com.micro7.micro7g3.repository.PedidoRepository;
 
-
 @Service
 public class PedidoService {
 
@@ -24,13 +23,15 @@ public class PedidoService {
     private final HistorialPedidoRepository historialPedidoRepository;
     private final PedidoDetalleRepository pedidoDetalleRepository;
 
-    public PedidoService(PedidoRepository pedidoRepository, HistorialPedidoRepository historialPedidoRepository, PedidoDetalleRepository pedidoDetalleRepository) {
+    public PedidoService(PedidoRepository pedidoRepository,
+                         HistorialPedidoRepository historialPedidoRepository,
+                         PedidoDetalleRepository pedidoDetalleRepository) {
         this.pedidoRepository = pedidoRepository;
         this.historialPedidoRepository = historialPedidoRepository;
         this.pedidoDetalleRepository = pedidoDetalleRepository;
     }
 
-    public Pedido crearPedido(UUID idUsuario, UUID idTienda) {
+    public Pedido crearPedido(String idUsuario, int idTienda) {
         Pedido pedido = new Pedido();
         pedido.setIdUsuario(idUsuario);
         pedido.setIdTienda(idTienda);
@@ -71,11 +72,11 @@ public class PedidoService {
         return pedidoRepository.findAll();
     }
 
-    public List<Pedido> listarPedidosUsuario(UUID idUsuario) {
+    public List<Pedido> listarPedidosUsuario(String idUsuario) {
         return pedidoRepository.findByIdUsuario(idUsuario);
     }
 
-    public List<Pedido> listarPedidosTienda(UUID idTienda) {
+    public List<Pedido> listarPedidosTienda(int idTienda) {
         return pedidoRepository.findByIdTienda(idTienda);
     }
 
@@ -104,9 +105,8 @@ public class PedidoService {
 
         return pedidoDetalleRepository.save(detalle);
     }
-    
+
     public List<PedidoDetalle> obtenerDetalles(UUID idPedido) {
         return pedidoDetalleRepository.findByPedidoIdPedido(idPedido);
     }
-
 }

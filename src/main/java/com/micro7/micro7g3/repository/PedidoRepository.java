@@ -9,7 +9,7 @@ import com.micro7.micro7g3.model.Pedido;
 
 public interface PedidoRepository extends JpaRepository<Pedido, UUID> {
 
-    List<Pedido> findByIdUsuario(UUID idUsuario);
+    List<Pedido> findByIdUsuario(String idUsuario);
 
-    List<Pedido> findByIdTienda(UUID idTienda);
+    List<Pedido> findByIdTienda(int idTienda);
 }

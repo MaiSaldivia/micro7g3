@@ -28,12 +28,12 @@ public class Pedido {
     @Id
     @GeneratedValue
     private UUID idPedido;
+    
+    @Column(nullable = false, length = 13)
+    private String idUsuario;
 
-    @Column(nullable = false)
-    private UUID idUsuario;
-
-    @Column(nullable = false)
-    private UUID idTienda;
+    @Column(nullable = false, length = 10)
+    private int idTienda;
 
     private LocalDateTime fechaPedido;
 

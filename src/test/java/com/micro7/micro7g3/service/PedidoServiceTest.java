@@ -47,8 +47,8 @@ public class PedidoServiceTest {
 
     @Test
     void testCrearPedido() {
-        UUID idUsuario = UUID.randomUUID();
-        UUID idTienda = UUID.randomUUID();
+        String idUsuario = "user123";
+        int idTienda = 101;
 
         Pedido pedidoMock = new Pedido();
         pedidoMock.setIdUsuario(idUsuario);
@@ -125,7 +125,7 @@ public class PedidoServiceTest {
 
     @Test
     void testListarPedidosUsuario() {
-        UUID idUsuario = UUID.randomUUID();
+        String idUsuario = "user123";
         List<Pedido> pedidos = List.of(new Pedido(), new Pedido());
 
         when(pedidoRepository.findByIdUsuario(idUsuario)).thenReturn(pedidos);
@@ -137,7 +137,7 @@ public class PedidoServiceTest {
 
     @Test
     void testListarPedidosTienda() {
-        UUID idTienda = UUID.randomUUID();
+        int idTienda = 101;
         List<Pedido> pedidos = List.of(new Pedido());
 
         when(pedidoRepository.findByIdTienda(idTienda)).thenReturn(pedidos);

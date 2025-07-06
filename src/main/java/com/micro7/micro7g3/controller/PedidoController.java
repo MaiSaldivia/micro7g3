@@ -5,13 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.micro7.micro7g3.model.EstadoPedido;
 import com.micro7.micro7g3.model.HistorialPedido;
@@ -30,7 +24,7 @@ public class PedidoController {
     }
 
     @PostMapping("/crear")
-    public Pedido crearPedido(@RequestParam UUID idUsuario, @RequestParam UUID idTienda) {
+    public Pedido crearPedido(@RequestParam String idUsuario, @RequestParam int idTienda) {
         return pedidoService.crearPedido(idUsuario, idTienda);
     }
 
@@ -63,12 +57,12 @@ public class PedidoController {
     }
 
     @GetMapping("/usuario/{idUsuario}")
-    public List<Pedido> listarPorUsuario(@PathVariable UUID idUsuario) {
+    public List<Pedido> listarPorUsuario(@PathVariable String idUsuario) {
         return pedidoService.listarPedidosUsuario(idUsuario);
     }
 
     @GetMapping("/tienda/{idTienda}")
-    public List<Pedido> listarPorTienda(@PathVariable UUID idTienda) {
+    public List<Pedido> listarPorTienda(@PathVariable int idTienda) {
         return pedidoService.listarPedidosTienda(idTienda);
     }
 
@@ -95,5 +89,4 @@ public class PedidoController {
             ? ResponseEntity.noContent().build()
             : ResponseEntity.ok(detalles);
     }
-
 }
